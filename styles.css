@@ -1,0 +1,61 @@
+* {
+  border: 2px solid red;
+}*/
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.direction {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.Topbox, .Footer {
+    background-color: #1f2937;
+    display: flex;
+    flex-direction: column;
+}
+
+.Top-logo {
+    display: flex;
+    justify-content: space-around;
+}
+
+.Top {
+    display: flex;
+    font-weight: bolder;
+    font-size: 48px;
+    color: #F9FAF8;
+}
+
+.top-right {
+    display: flex;
+}
+
+.Top-middle {
+    display: flex;
+    justify-content: center;
+}
+
+.text-box {
+    max-width: 500px;
+}
+
+.text-box-top {
+    display: flex;
+    font-weight: bolder;
+    font-size: 48px;
+    color: #F9FAF8;
+}
+
+.text-box-bot {
+    font-size: 18px;
+    color: #E5E7EB;
+}
+
+body {
+    color: white;
+}
