@@ -13,7 +13,7 @@ body {
     font-family: system-ui, Roboto;
     margin: 0;
     background-color: #e5e7eb;
-    background-image: url(./images/Spong.jpg);
+    background-image: url(images/Spong.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -110,7 +110,7 @@ button {
     width: 530px;
     height: 230px;
     background-color: grey;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./images/goku.jpeg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/goku.jpeg');
     background-size: cover;
     text-shadow: 0 0 3px #ff0000, 0 0 5px #0000FF;
 }
@@ -149,7 +149,7 @@ p {
 
 @font-face {
     font-family: "friday13";
-    src: url("/font/Friday13v12.ttf") format("truetype");
+    src: url("font/Friday13v12.ttf") format("truetype");
 }
 
 .containers {
@@ -255,12 +255,12 @@ p {
 
 @font-face {
     font-family: "wideawake";
-    src: url("/font/WIDEAWAKE.TTF") format("truetype");
+    src: url("font/WIDEAWAKE.TTF") format("truetype");
 }
 
 @font-face {
     font-family: "wideawake-black";
-    src: url("/font/WIDEAWAKEBLACK.ttf") format("truetype");
+    src: url("font/WIDEAWAKEBLACK.ttf") format("truetype");
 }
 
 .action-text div {
