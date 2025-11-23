@@ -2,6 +2,62 @@
   border: 2px solid red;
 }*/
 
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+:root {
+
+    --background-dark: #1f2937;
+    --text-dark: #f9f871;
+    --link-dark: #ffffff;
+
+    --background-light: #e5e7eb;
+    --text-light: #1f2937;
+    --link-light: #000000;
+
+    --container-image: url('images/Happy.png');
+}
+
+#theme-switch {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+#theme-switch img {
+    width: 50px;
+    height: auto;
+    display: block;
+}
+
+#theme-switch:hover {
+    opacity: 1;
+    filter: none;
+    color:inherit;
+}
+
+body.dark-mode {
+    --background-current: var(--background-dark);
+    --text-current: var(--text-dark);
+    --link-current: var(--link-dark);
+    --container-image: url('images/Happy.png');
+    --navbar-background: rgba(22, 35, 95, 0.8);
+}
+
+body.light-mode {
+    --background-current: var(--background-light);
+    --text-current: var(--text-light);
+    --link-current: var(--link-light);
+    --container-image: url('images/Sad.png');
+    --navbar-background: rgba(230, 250, 250, 0.8);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -9,10 +65,10 @@
 body {
     display: flex;
     flex-direction: column;
-    color: #F9FAF8;
+    color: var(--text-current);
     font-family: system-ui, Roboto;
     margin: 0;
-    background-color: #e5e7eb;
+    background-color: var(--background-current);
     background-image: url(images/Spong.jpg);
     background-position: center;
     background-size: cover;
@@ -20,25 +76,48 @@ body {
     background-attachment: fixed;
 }
 
+
 a {
     text-decoration: none;
-    color: white;
+    color: var(--link-current);
 }
+
+a:hover{
+    filter: brightness(75%);
+    transition: filter 0.2s ease;
+    opacity: 0.5;
+    color: var(--color-hover-link-text);
+}
+
+
+/* Navbar */
+
 
 ul img {
-    max-height: 30px; transform: translateY(20%);
+    max-height: 30px; 
 }
 
-.header, .footer {
+header, footer {
     background-color: #1f2937;
     display: flex;
     flex-direction: column;
 }
 
-.header {
-    padding: 8px;
-    height: 600px;
+.navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    background-color: var(--navbar-background);
+    z-index: 1000;
 }
+
+header {
+    padding: 8px;
+    height: 450px;
+    padding-top: 75px;
+}
+
 
 .top-center-box {
     align-self: center;
@@ -52,7 +131,9 @@ ul img {
 }
 
 .center-box-logo {
-    padding: 8px 0px 126px 0px;
+    padding: 8px 10px ;
+    width: 100%;
+    margin: 0;
 }
 
 ul {
@@ -86,6 +167,14 @@ ul {
     margin: 6px 0px;
 }
 
+.logo-links a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 5px 0;
+}
+
 .text-box-bot, .logo-links {
     font-size: 18px;
     color: #E5E7EB;
@@ -117,10 +206,10 @@ button:hover, a:hover img  {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 530px;
+    width: 412px;
     height: 230px;
     background-color: grey;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/goku.jpeg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--container-image);
     background-size: cover;
     text-shadow: 0 0 3px #ff0000, 0 0 5px #0000FF;
 }
@@ -299,7 +388,7 @@ p {
     width: auto;
 }
 
-.footer {
+footer {
     height: 100px;
     justify-content: center;
     align-items: center;

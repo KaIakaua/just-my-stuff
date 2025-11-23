@@ -5,22 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body> <!-- Wow this is a guitar! -->
 
-    <div class="header">
-        <div class="top-center-box">
+<body class="dark-mode"> <!-- Wow this is a guitar! -->
+    <nav class="navbar">
             <div class="center-box-logo">
+                <button id="theme-switch">
+                    <!-- Icon-dark is to switch TOWARDS the light mode -->
+                    <!-- Icon-light  is to switch TOWARDS the dark mode  -->
+                    <img id="theme-icon" src="images/Icon-dark.png" alt="Toggle Theme">
+                </button>
                 <ul class="logo-links">
-                    <a href="https://github.com/KaIakaua" target="_blank" ><li class="logo"><img src="images/GitHub.png" alt="" >  GitHub</li></a>
+                    <li class="logo">
+                        <a href="https://github.com/KaIakaua" target="_blank" class="link-item">
+                          <img src="images/GitHub.png" alt="" > 
+                          GitHub
+                        </a>
+                    </li>
                 </ul>
                 <ul class="logo-links">
-                        <li><a href="https://twitter.com/Kalakauart" target="_blank"><img src="images/X.png" alt="" >  X </a></li>
-                        <li><a href="https://www.youtube.com/@KalakauaGodHimself" target="_blank"><img src="images/YouTube.png" alt="">  YouTube</a></li> 
-                        <li><a href="https://kalakauart.carrd.co/" target="_blank"><img src="images/Carrd.png" alt="">  Carrd</a></li>
+                    <li><a href="https://twitter.com/Kalakauart" target="_blank" class="link-item">
+                        <img src="images/X.png" alt="" >
+                        X
+                    </a></li>
+                    <li><a href="https://www.youtube.com/@KalakauaGodHimself" target="_blank" class="link-item">
+                        <img src="images/YouTube.png" alt="">
+                        YouTube
+                    </a></li> 
+                    <li><a href="https://kalakauart.carrd.co/" target="_blank" class="link-item">
+                        <img src="images/Carrd.png" alt="">
+                        Carrd
+                    </a></li>
                 </ul>
-            </div>        
+            </div>
+    </nav>
+    <header>
+        <div class="top-center-box">
+  
 
             <div class="bot-center-box">
                     <div class="text-box">
@@ -31,7 +55,7 @@
                     <div class="image"><p class="imagetext"></p></div> 
             </div>  
         </div>
-    </div>
+    </header>
 
     <div class="middle">
         <div class="mid-top">
@@ -81,7 +105,7 @@
         </div>
     </div>
 
-    <div class="footer">Copyright © Needs to be abolished</div>
+    <footer>Copyright © Needs to be abolished</footer>
 
 <script src="script.js"></script>
 </body>
