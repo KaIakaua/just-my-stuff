@@ -177,7 +177,7 @@ button:hover, a:hover img  {
 
 header {
     padding: 8px;
-    height: 450px;
+    height: 420px;
     padding-top: 75px;
     background-color: var(--background-current);
 }
@@ -233,6 +233,7 @@ header {
 }
 
 .imagetext {
+    margin-top: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -475,7 +476,6 @@ header {
     margin-right: 75px;
     margin-top: -125px;
     z-index: 10;
-    pointer-events: none;
 }
 
 #grip img {
