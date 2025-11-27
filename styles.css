@@ -12,6 +12,9 @@ html {
 
 :root {
 
+    --background-image-1: url('images/Spong.jpg');
+    --background-image-2: url('images/goku.jpeg');
+
     --background-dark: #1f2937;
     --text-important-dark: #f9f871;
     --text-regular-dark: #d1d5db;
@@ -80,11 +83,7 @@ body {
     font-family: system-ui, Roboto;
     margin: 0;
     background-color: var(--background-current);
-    background-image: url(images/Spong.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+
 }
 
 a {
@@ -269,9 +268,18 @@ header {
 }
 
 .mid-top {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: var(--background-image-1);
+    padding-top: 100px;
+    padding-bottom: 100px;
     align-self: center;
+    display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .containers {
@@ -355,11 +363,17 @@ header {
 
 .mid-mid {
     background-color: var(--background-current);
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    
 }
 
 .mid-mid div{
     color: #ce157b;
-
     text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18, 2px 2px 2px rgba(206,89,55,0);
     transform: scale(1.15);
 }
@@ -374,7 +388,7 @@ header {
 .quote {
     font-size: 36px;
     font-style: italic;
-    margin-top: 120px;
+    margin-top: 20px;
 }
 
 .quote-name {
@@ -382,7 +396,8 @@ header {
     max-width: 750px;
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 110px;
+    margin-bottom: 20px;
+
 }
 
 /* Bottom middle */
@@ -392,10 +407,16 @@ header {
 }
 
 .mid-bot {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: var(--background-image-2);
+    padding: 200px 0 100px;
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 0 40px;
     position: relative;
 }
 
@@ -477,6 +498,7 @@ header, footer {
     color: var(--text-important-current);
     display: flex;
     flex-direction: column;
+    z-index: 10;
 }
 
 .text-box-bot, footer {
