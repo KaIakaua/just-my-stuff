@@ -29,15 +29,28 @@ const explosion = document.querySelector("#explosion");
 let clickCount = 0;
 let resetTimer;
 let stopTimer;
+let explosionTimer;
+let decayTimer1, decayTimer2;
 
 gripImage.addEventListener("click", () => {
 
+    if (clickCount === 15) return;
+
     clearTimeout(resetTimer);
     clearTimeout(stopTimer);
+    clearTimeout(explosionTimer);
+    clearTimeout(decayTimer1)
+    clearTimeout(decayTimer2)
 
-    gripImage.classList.remove("shake-mild", "shake-med", "shake-hard", "shake-stopping");
+    gripImage.classList.remove("shake-mild", "shake-med", "shake-hard");
+    bullet.classList.remove("shoot-active");
+    explosion.classList.remove("explode-active");
 
     void gripImage.offsetWidth;
+    void bullet.offsetWidth;
+    void explosion.offsetWidth;
+
+    /* SHAKING */
 
     clickCount++;
     // console.log(`Grip clicked ${clickCount} time(s)`);
@@ -55,38 +68,58 @@ gripImage.addEventListener("click", () => {
         gripImage.classList.add("shake-mild");
     }
 
+
+    /* FIRE BULLET */
+
     if (clickCount === 15) {
 
         // console.log("BULLET FIRED!");
-        bullet.classList.remove("shoot-active");
-        explosion.classList.remove("explode-active");
-        void bullet.offsetWidth;
-        void explosion.offsetWidth;
         bullet.classList.add("shoot-active");
 
         setTimeout(() => {
+
             const bulletRect = bullet.getBoundingClientRect();
             explosion.style.top = (bulletRect.top + 80) + "px";
             bullet.classList.remove("shoot-active");
             explosion.classList.add("explode-active");
-        }, 1000);
+
+            explosionTimer = setTimeout(() => {
+                explosion.classList.remove("explode-active");
+            }, 3000)
+        }, 1000)
     }
+
+    let resetDuration = (clickCount >= 15) ? 800 : 800;
 
     resetTimer = setTimeout(() => {
 
         clickCount = 0;
-        gripImage.classList.remove("shake-mild", "shake-med", "shake-hard");
-        gripImage.classList.add("shake-stopping");
-        explosion.classList.remove("explode-active");
-        bullet.classList.remove("shoot-active");
-
-        stopTimer = setTimeout(() => {
-            gripImage.classList.remove("shake-stopping");
-        }, 1000)
-
-        bullet.classList.remove("shoot-active");
         // console.log("Click count reset");
-    }, 1200)
+
+        if (gripImage.classList.contains("shake-hard")) {
+            gripImage.classList.remove("shake-hard");
+            gripImage.classList.add("shake-med")
+
+            decayTimer1 = setTimeout(() => {
+                gripImage.classList.remove("shake-med");
+                gripImage.classList.add("shake-mild");
+
+                decayTimer2 = setTimeout(() => {
+                    gripImage.classList.remove("shake-mild")
+                }, 400)
+            }, 300)
+        } else if (gripImage.classList.contains("shake-med")) {
+            gripImage.classList.remove("shake-med");
+            gripImage.classList.add("shake-mild");
+
+            decayTimer1 = setTimeout(() => {
+                gripImage.classList.remove("shake-mild");
+            }, 400)
+        } else {
+            gripImage.classList.remove("shake-mild");
+        }
+
+    }, resetDuration)
 })
 
 
