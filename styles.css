@@ -423,7 +423,31 @@ header {
     position: relative;
 }
 
-
+.drawbox {
+    * {
+        box-sizing: border-box;
+    }
+    canvas {
+            border: 1px solid black;
+            cursor: crosshair;
+    }
+    #gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+    }
+    .image-container {
+            border: 1px solid #ccc;
+            padding: 5px;
+            max-width: 200px;
+            text-align: center;
+    }
+    .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+    }
+}
 
 .action-box {
     flex-grow: 1;
@@ -462,7 +486,6 @@ header {
     transform: scale(2);
     line-height: 40px;
     -webkit-text-stroke: 1px #276bd8;
-
 }
 
 .action {

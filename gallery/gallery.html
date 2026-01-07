@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gallery of those drawings sent to me</title>
+    <meta name="referrer" content="no-referrer">
+    <style>
+        body {
+            background-image: url(Background.gif);
+            background-size: cover;
+        }
+        h1, p {
+            text-align: center;
+        }
+        h1 {
+            color: #ffffff;
+        }
+        a {
+            color: #ffcc00;
+        }
+        .image-container > p, .image-container > img {
+            border: solid 2px black;
+        }
+        /* Basic styling so the images aren't huge */
+        #gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .image-container {
+            border: 2px solid #3882f6;
+            padding: 10px;
+            background: white;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 250px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <p id="status"></p>
+
+	
+    <h1>Submitted Drawings ☻</h1>
+    <p><a href="https://www.deviantart.com/firstdarkangel2001/art/Animated-Star-Background-Stock-649474574">Background source</a></p>
+
+    <div id="gallery">Loading images...</div>
+    
+    <script src="/drawbox.js"></script>
+
+</body>
+</html>
