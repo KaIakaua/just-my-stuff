@@ -135,12 +135,14 @@ button:hover, a:hover img  {
 
 #home-button {
     opacity: 1;
-}
-
-#home-button svg {
-    width: 30px;
-    height: auto;
-    fill: currentColor;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    & svg {
+        width: 30px;
+        height: auto;
+        fill: currentColor; 
+    }
 }
 
 .navbar {
@@ -545,6 +547,9 @@ header, footer {
 
 /* Animations */
 
+
+
+
 .shake-mild /* SHAKE */ { 
     animation: shake-mild 0.5s ease-in-out;
     transition: none !important;
@@ -586,7 +591,6 @@ header, footer {
   90% { transform: translate(2px, 4px) rotate(0deg); }
   100% { transform: translate(2px, -4px) rotate(-5deg); }
 }
-
 
 .shoot-active /* BULLET */ {
     animation: shoot-laser 2.5s forwards ease-out;
