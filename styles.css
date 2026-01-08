@@ -4,6 +4,7 @@
 
 html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 *, *:before, *:after {
@@ -415,52 +416,66 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     background-image: var(--background-image-2);
-    padding: 200px 0 100px;
-    display: flex;
-    justify-content: center;
+    padding: 120px 40px;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     position: relative;
+    gap: 40px;
 }
 
 .drawbox {
-    * {
+    padding: 10px;
+    background-color: color-mix(in srgb, var(--background-current), transparent 50%);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & h1, #status {
+        color: var(--text-important-current);
+        font-weight: 400;
+    }
+    & * {
         box-sizing: border-box;
     }
-    canvas {
-            border: 1px solid black;
-            cursor: crosshair;
+    & canvas {
+        border: 1px solid var(--link-current);
+        background-color: white;
+        cursor: crosshair;
     }
-    #gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+    & .image-container {
+        border: 1px solid #ccc;
+        padding: 5px;
+        max-width: 200px;
+        text-align: center;
     }
-    .image-container {
-            border: 1px solid #ccc;
-            padding: 5px;
-            max-width: 200px;
-            text-align: center;
-    }
-    .image-container img {
-            max-width: 100%;
-            height: auto;
-            display: block;
+    & .image-container img {
+        max-width: 100%;
+        height: auto;
+        display: block;
     }
 }
 
+.drawbox-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
 .action-box {
-    flex-grow: 1;
-    max-width: 1050px;
+    flex-shrink: 0;
+    width: 800px;
     height: 150px;
+    display: flex;
     justify-content: space-around;
+    align-items: center;
     background-color: #3882f6;
     border-radius: 10px;
-    align-items: center;
     color: white;
     font-size: 18px;
-    margin-right: 100px;
-    margin-bottom: 120px;
 }
 
 .action-text-top {
@@ -493,14 +508,12 @@ header {
 }
 
 #grip {
-    position: absolute;
-    right: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
     flex-shrink: 0;
     height: 312px;
-    align-items: center;
-    margin-right: 75px;
-    margin-top: -125px;
-    z-index: 10;
+
 }
 
 #grip img {

@@ -96,11 +96,24 @@ function stop(event) {
     restore_array.push(context.getImageData(0, 0, canvas.width, canvas.height));
     start_index++;
 }
+function isCanvasBlank() {
+    if (!canvas) return true;
+    const context = canvas.getContext("2d");
+    const pixelBuffer = new Uint32Array(
+        context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
+    );
+    return !pixelBuffer.some(color => color !== 0xFFFFFFFF);
+}
+
 
 if (document.getElementById("submit")) {
     document.getElementById("submit").addEventListener("click", async function () {
         const btn = document.getElementById("submit");
         const status = document.getElementById("status");
+        if (isCanvasBlank()) {
+            status.textContent = "Canvas is blank.";
+            return;
+        }
         btn.disabled = true;
         status.textContent = "Uploading...";
 
@@ -141,6 +154,22 @@ if (document.getElementById("submit")) {
     });
 }
 
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+if (lightbox && lightboxImg) {
+    lightbox.addEventListener("click", () => {
+        lightbox.style.display = "none";
+        lightbox.classList.remove("is-zoomed");
+        lightboxImg.src = "";
+    })
+
+    lightboxImg.addEventListener("click", (event) => {
+        event.stopPropagation();
+        lightbox.classList.toggle("is-zoomed");
+    })
+}
+
 async function fetchImages() {
     const gallery = document.getElementById("gallery");
     if (!gallery || !DISPLAY_IMAGES) return;
@@ -162,6 +191,14 @@ async function fetchImages() {
                 const div = document.createElement("div");
                 div.classList.add("image-container");
                 div.innerHTML = `<img src="${url}" referrerpolicy="no-referrer"><p>${time}</p>`;
+                
+                div.addEventListener("click",() => {
+                    if (lightbox && lightboxImg) {
+                        const imgSrc = div.querySelector("img").src;
+                        lightboxImg.src = imgSrc;
+                        lightbox.style.display = "flex";
+                    }                    
+                })
                 gallery.appendChild(div);
             }
         });
