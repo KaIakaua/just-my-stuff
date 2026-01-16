@@ -300,9 +300,11 @@ header {
     src: url("font/Friday13v12.ttf") format("truetype");
 }
 
-
 .title {
     margin: 32px;
+}
+
+.title, .title-page {
     font-size: 36px;
     font-weight: 900;
     font-family: friday13;
@@ -465,6 +467,10 @@ header {
     width: 100%;
 }
 
+#status {
+    height: 24px;
+}
+
 .action-box {
     flex-shrink: 0;
     width: 800px;
@@ -476,6 +482,10 @@ header {
     border-radius: 10px;
     color: white;
     font-size: 18px;
+}
+
+.action-text {
+    min-width: 400px;
 }
 
 .action-text-top {
@@ -494,13 +504,80 @@ header {
     src: url("font/WIDEAWAKEBLACK.ttf") format("truetype");
 }
 
-.action-text div {
+.action-text-top {
     font-family: "wideawake-black", sans-serif;
     letter-spacing: 2px;
     color: black;
-    transform: scale(2);
+    font-size: 50px;
     line-height: 40px;
-    -webkit-text-stroke: 1px #276bd8;
+}
+
+.message-system {
+    max-width: 100%;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message-input-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.status-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 60px;
+    width: 100%;
+}
+
+#msg-input {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #000;
+    font-family: monospace;
+    border-radius: 5px;
+    resize: none;
+}
+
+.msg-submit {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: 45px;
+    white-space: nowrap;
+    margin-top: 0;
+    font-size: 20px;
+    background-color: darkblue;
+    z-index: 2;
+    color: wheat;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#message-display {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#msg-status {
+    font-weight: bold;
+    font-family: monospace;
+    margin-right: 15px;
+    white-space: nowrap;
 }
 
 .action {

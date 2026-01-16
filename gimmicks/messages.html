@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love letters</title>
+    <meta name="referrer" content="no-referrer">
+    <style>
+        body {
+            background-image: url(Background.gif);
+            background-size: cover;
+        }
+        h1, p {
+            text-align: center;
+        }
+        h1 {
+            color: #ffffff;
+        }
+        a {
+            color: #ffcc00;
+        }
+        #message-display {
+            margin-top: 30px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .anon-post span {
+            display: block;
+            font-size: 30px;
+            color: #ffffff;
+            margin-top: 5px;
+        }
+        .message-display {
+            margin: 30px auto;
+            width: 95%;
+            max-width: 1200;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            gap: 20px;
+        }
+        .anon-post {
+            flex: 1 1 300px;
+            max-width: 400px;
+            min-height: 150px;
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(5px); 
+            border-left: 5px solid #3882f6; 
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding: 20px;
+            color: #ffffff; 
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            font-family: 'Courier New', Courier, monospace; 
+            word-wrap: break-word;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .anon-post strong {
+            color: #38f697;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .anon-post .msg-body {
+            font-size: 20px;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        small {
+            font-size: 15px;
+        } 
+    </style>
+</head>
+<body>
+    <p id="status"></p>
+
+	
+    <h1>Anonymous Messages ☻</h1>
+    <p><a href="https://www.deviantart.com/firstdarkangel2001/art/Animated-Star-Background-Stock-649474574">Background source</a></p>
+
+    <div class="message-display">
+        Loading messages...
+    </div>
+
+    <script src="../messages.js"></script>
+
+</body>
+</html>

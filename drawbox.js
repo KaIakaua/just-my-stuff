@@ -146,10 +146,13 @@ if (document.getElementById("submit")) {
             // alert("Drawing submitted!");
             // location.reload();
             window.Clear();
+            btn.disabled = false;
+            setTimeout(() => { status.textContent = ""; }, 3000);
 
         } catch (e) {
             status.textContent = "Error.";
             btn.disabled = false;
+            setTimeout(() => { status.textContent = ""; }, 3000);
         }
     });
 }
