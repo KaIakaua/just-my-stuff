@@ -68,19 +68,35 @@ async function fetchMessages() {
             const columns = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
             if (columns.length < 2) return;
 
-            const time = columns[0].replace(/"/g, "");
+            const fullTimestamp = columns[0].replace(/"/g, "");
+            const dateOnly = fullTimestamp.split(" ")[0];
             const text = columns[1].replace(/"/g, "");
 
             const div = document.createElement("div");
             div.className = "anon-post";
-            
-            const textSpan = document.createElement("span");
-            textSpan.textContent = text;
+            div.style.cursor = "zoom-in";
 
-            div.innerHTML = `<strong>Anon:</strong> `;
-            div.appendChild(textSpan);
-            div.innerHTML += ` <br><small style="opacity:0.5">${time}</small>`;
+            div.innerHTML = `
+                <div class="anon-header">
+                    <strong>Anon:</strong>
+                    <span>${dateOnly}</span>
+                </div>
+                <div class="msg-body"></div>
+            `;
+
             
+            div.querySelector(".msg-body").textContent = text;
+
+            div.onclick = function() {
+                const modal = document.getElementById("msg-modal");
+                const mBody = document.getElementById("modal-body");
+                const mDate = document.getElementById("modal-date");
+
+                mBody.textContent = text;
+                mDate.textContent = dateOnly;
+                modal.style.display = "flex";
+            }
+
             display.appendChild(div);
         })
     } catch (e) {

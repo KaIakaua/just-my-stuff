@@ -19,12 +19,32 @@
         a {
             color: #ffcc00;
         }
-        #message-display {
-            margin-top: 30px;
-            width: 100%;
+        #home-button {
+            position: fixed; 
+            top: 20px;
+            left: 20px;
+            border-radius: 50%; /* Makes it a circle */
+            width: 60px;
+            height: 60px;
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            color: #ff6e1a;
+            text-decoration: none;
+            opacity: 1;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        #home-button:hover {
+            background: #000c79;
+            color: white;
+            transform: scale(1.1);
+        }
+        #home-button svg {
+            width: 50px;
+            height: auto;
+            fill: currentColor; 
         }
         .anon-post span {
             display: block;
@@ -36,16 +56,15 @@
             margin: 30px auto;
             width: 95%;
             max-width: 100%;
-            display: flex;
-            flex-direction: row-reverse;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 350px);
             justify-content: center;
             gap: 20px;
-            flex-wrap: wrap;
         }
         .anon-post {
-            flex: 1 1 300px;
+            flex: 0 0 350px;
             max-width: 400px;
-            min-height: 150px;
+            height: 250px;
             background: rgba(255, 255, 255, 0.1); 
             backdrop-filter: blur(5px); 
             border-left: 5px solid #3882f6; 
@@ -55,10 +74,9 @@
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             font-family: 'Courier New', Courier, monospace; 
-            word-wrap: break-word;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            overflow: hidden;
         }
         .anon-post strong {
             color: #38f697;
@@ -73,12 +91,116 @@
             line-height: 1.2;
             margin-bottom: 15px;
         }
-        small {
+        .anon-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .anon-header strong {
+            text-transform: uppercase;
+            letter-spacing: 1px;
             font-size: 15px;
-        } 
+        }
+        .anon-header span {
+            font-size: 15px;
+            font-weight: bold;
+            color: #fc0000;
+            margin: 0;
+        }
+        .msg-body {
+            flex-grow: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin: 10px 0;
+            padding-right: 10px;
+            font-size: 30px;
+            font-weight: bold;
+            word-wrap: break-word;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
+            padding-right: 12px;
+        }
+        .msg-body::-webkit-scrollbar {
+            width: 6px;
+        }
+        .msg-body::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .msg-body::-webkit-scrollbar-thumb {
+            background: #3882f6;
+            border-radius: 10px;
+        }
+        #msg-modal {
+            display: none; 
+            position: fixed;
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer; 
+        }
+        #modal-content {
+            background: #050505;
+            border: 5px solid #3882f6;
+            border-radius: 15px;
+            padding: 60px;
+            width: 95vw;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            cursor: default; 
+            box-shadow: 0 0 50px rgba(56, 130, 246, 0.4);
+        }
+        #modal-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #222;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            flex-shrink: 0;
+        }
+        #modal-title {
+            color: #38f697; font-size: 20px; font-family: monospace; 
+        }
+        #modal-date {
+            color: #888; font-size: 18px; 
+        }
+        #modal-body {
+            color: white;
+            font-size: 28px; 
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        #modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        #modal-body::-webkit-scrollbar-thumb {
+            background: #3882f6;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
+    <a href="../index.html" id="home-button" title="Back to Home">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+    </a>
     <p id="status"></p>
 
 	
@@ -87,6 +209,17 @@
 
     <div class="message-display">
         Loading messages...
+    </div>
+
+    <div id="msg-modal" onclick="this.style.display='none'">
+        <div id="modal-content" onclick="event.stopPropagation()">
+            <div id="modal-header">
+                <strong id="modal-title">ANON</strong>
+                <span id="modal-date"></span>
+            </div>
+            <div id="modal-body"></div>
+            <p style="text-align: right; color: #444; font-size: 10px; margin-top: 20px;">Click outside to close</p>
+        </div>
     </div>
 
     <script src="../messages.js"></script>

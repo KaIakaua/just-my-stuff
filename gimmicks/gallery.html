@@ -19,6 +19,32 @@
         a {
             color: #ffcc00;
         }
+        #home-button {
+            position: fixed; 
+            top: 20px;
+            left: 20px;
+            border-radius: 50%; /* Makes it a circle */
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff6e1a;
+            text-decoration: none;
+            opacity: 1;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        #home-button:hover {
+            background: #000c79;
+            color: white;
+            transform: scale(1.1);
+        }
+        #home-button svg {
+            width: 50px;
+            height: auto;
+            fill: currentColor; 
+        }
         .image-container > p, .image-container > img {
             border: solid 2px black;
         }
@@ -69,6 +95,12 @@
     </style>
 </head>
 <body>
+    <a href="../index.html" id="home-button" title="Back to Home">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+    </a>
+
     <p id="status"></p>
 
 	
