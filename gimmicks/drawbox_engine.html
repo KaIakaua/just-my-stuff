@@ -2,15 +2,54 @@
 <html>
 <head>
     <style>
-        body { margin: 0; background: transparent; color: white; font-family: sans-serif; text-align: center; }
-        canvas { background: white; border: 2px solid #000; cursor: crosshair; max-width: 100%; }
-        .drawbox-buttons { margin-top: 10px; display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; }
-        button { cursor: pointer; padding: 5px 10px; }
-        #status { height: 20px; font-size: 12px; color: #38f697; }
+        @font-face {
+            font-family: "wideawake-black";
+            src: url("../font/WIDEAWAKEBLACK.ttf") format("truetype");
+        }
+        body { 
+            margin: 0; 
+            background: transparent; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            font-family: system-ui, Roboto;
+        }
+        canvas {
+            border: 1px solid white;
+            background-color: white;
+            cursor: crosshair;
+            box-sizing: border-box;
+        }
+        .drawbox-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button {
+            padding: 8px 30px;
+            border-radius: 10px;
+            border-color: transparent;
+            background-color: #3882f6;
+            font-size: 16px;
+            font-weight: bold;
+            color: #f9faf8;
+            cursor: pointer;
+        }
+        button:hover { filter: brightness(80%); }
+        #status {
+            height: 24px;
+            font-weight: bold;
+            font-family: monospace;
+            color: #f9f871; 
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
-    <canvas id="drawboxcanvas" width="400" height="400"></canvas>
+    <canvas id="drawboxcanvas" width="500" height="500"></canvas>
     <div class="drawbox-buttons">    
         <button onclick="Restore()">Undo</button>
         <button onclick="Clear()">Clear</button>
@@ -19,6 +58,7 @@
         <button id="submit">Send</button>
     </div>
     <p id="status"></p>
+
     <script src="../config.js"></script>
     <script src="../drawbox.js"></script>
 </body>
