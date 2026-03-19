@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { margin: 0; background: transparent; color: white; font-family: sans-serif; text-align: center; }
+        canvas { background: white; border: 2px solid #000; cursor: crosshair; max-width: 100%; }
+        .drawbox-buttons { margin-top: 10px; display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; }
+        button { cursor: pointer; padding: 5px 10px; }
+        #status { height: 20px; font-size: 12px; color: #38f697; }
+    </style>
+</head>
+<body>
+    <canvas id="drawboxcanvas" width="400" height="400"></canvas>
+    <div class="drawbox-buttons">    
+        <button onclick="Restore()">Undo</button>
+        <button onclick="Clear()">Clear</button>
+        <input type="color" value="#000000" oninput="stroke_color = this.value">
+        <input type="range" min="1" max="100" value="2" oninput="stroke_width = this.value">
+        <button id="submit">Send</button>
+    </div>
+    <p id="status"></p>
+    <script src="../config.js"></script>
+    <script src="../drawbox.js"></script>
+</body>
+</html>
