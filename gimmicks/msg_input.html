@@ -12,6 +12,18 @@
             display: flex; 
             flex-direction: column; 
             align-items: center; 
+            background-image: url('Background.gif');
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #000; 
+            color: white;
+            padding: 50px;
+        }
+        .anon-post {
+            background: rgba(0, 0, 0, 0.8); 
+            border: 2px solid #3882f6;
+            padding: 20px;
+            border-radius: 10px;
         }
         .message-input-area {
             display: flex;
@@ -31,6 +43,13 @@
             font-family: monospace;
             border-radius: 5px;
             resize: none;
+        }
+        .msg-body {
+            font-size: 30px;
+            color: white;
+        }
+        .anon-header strong {
+            color: #38f697; 
         }
         .status-container {
             display: flex;
