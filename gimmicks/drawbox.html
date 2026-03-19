@@ -2,17 +2,37 @@
 <html>
 <head>
     <style>
+        
+        @font-face {
+            font-family: "friday13";
+            src: url("../font/Friday13v12.ttf") format("truetype");
+        }
         @font-face {
             font-family: "wideawake-black";
             src: url("../font/WIDEAWAKEBLACK.ttf") format("truetype");
         }
-        body { 
-            margin: 0; 
-            background: transparent; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            font-family: system-ui, Roboto;
+        
+        body {
+            background-image: url('Background.gif'); /* Using your space gif */
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #050505;
+            color: white;
+            font-family: system-ui, Roboto, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 80px; /* Room for the home button */
+        }
+        
+        .page-title {
+            font-family: "friday13";
+            color: red;
+            font-size: 50px;
+            letter-spacing: 5px;
+            text-shadow: 3px 3px #7a0000;
+            margin-bottom: 20px;
         }
         canvas {
             border: 1px solid white;
