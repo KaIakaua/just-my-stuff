@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        
+        @font-face {
+            font-family: "friday13";
+            src: url("../font/Friday13v12.ttf") format("truetype");
+        }
+        @font-face {
+            font-family: "wideawake-black";
+            src: url("../font/WIDEAWAKEBLACK.ttf") format("truetype");
+        }
+        body {
+            background-image: url('Background.gif'); /* Using your space gif */
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #1f2937;
+            color: white;
+            font-family: system-ui, Roboto, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            padding-top: 80px;
+        }
+        .page-title {
+            font-family: "friday13";
+            color: red;
+            font-size: 50px;
+            letter-spacing: 5px;
+            text-shadow: 3px 3px #7a0000;
+            margin-bottom: 20px;
+        }
+        canvas {
+            border: 5px solid #3882f6;
+            background-color: white;
+            cursor: crosshair;
+            box-sizing: border-box;
+        }
+        .drawbox-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button {
+            padding: 8px 30px;
+            border-radius: 10px;
+            border-color: transparent;
+            background-color: #3882f6;
+            font-size: 16px;
+            font-weight: bold;
+            color: #f9faf8;
+            cursor: pointer;
+        }
+        button:hover { filter: brightness(80%); }
+        #status {
+            height: 24px;
+            font-weight: bold;
+            font-family: monospace;
+            color: #f9f871; 
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="drawboxcanvas" width="500" height="500"></canvas>
+    <div class="drawbox-buttons">    
+        <button onclick="Restore()">Undo</button>
+        <button onclick="Clear()">Clear</button>
+        <input type="color" value="#000000" oninput="stroke_color = this.value">
+        <input type="range" min="1" max="100" value="2" oninput="stroke_width = this.value">
+        <button id="submit">Send</button>
+    </div>
+    <p id="status"></p>
+
+    <script src="../config.js"></script>
+    <script src="../drawbox.js"></script>
+</body>
+</html>

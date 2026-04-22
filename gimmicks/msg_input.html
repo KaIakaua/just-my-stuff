@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @font-face {
+            font-family: "wideawake-black";
+            src: url("../font/WIDEAWAKEBLACK.ttf") format("truetype");
+        }
+        body { 
+            margin: 0; 
+            background: transparent; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            background-image: url('Background.gif');
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #000; 
+            color: white;
+            padding: 50px;
+        }
+        .anon-post {
+            background: rgba(0, 0, 0, 0.8); 
+            border: 2px solid #3882f6;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .message-input-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 600px;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #msg-input {
+            width: 100%;
+            height: 50px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #000;
+            font-family: monospace;
+            border-radius: 5px;
+            resize: none;
+        }
+        .msg-body {
+            font-size: 30px;
+            color: white;
+        }
+        .anon-header strong {
+            color: #38f697; 
+        }
+        .status-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            height: 60px;
+            width: 100%;
+        }
+        #msg-status {
+            font-weight: bold;
+            font-family: monospace;
+            margin-right: 15px;
+            white-space: nowrap;
+            color: white;
+        }
+        .msg-submit {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            height: 45px;
+            white-space: nowrap;
+            background-color: darkblue;
+            color: wheat;
+            font-weight: bold;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-family: "wideawake-black", sans-serif;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="message-input-area">
+        <textarea id="msg-input" placeholder="or send music idk"></textarea>
+        <div class="status-container">
+            <span id="msg-status"></span>
+            <button class="msg-submit">Tell me something</button>                              
+        </div>
+    </div>
+
+    <script src="../config.js"></script>
+    <script src="../messages.js"></script>
+</body>
+</html>
