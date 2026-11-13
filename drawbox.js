@@ -11,10 +11,7 @@
 				     `\\´´\¸.·´
         
 */
-const GOOGLE_FORM_ID = "1FAIpQLSey6O-yqBfPfyNGOcAT4MpftMcVRmfG44P2-L4ouSK1pXYnQw";
-const ENTRY_ID = "entry.86254164";
-const GOOGLE_SHEET_ID = "16DarafIA0EjKZlcCyvyCHP_V_86MVZnqhqz5toxnFMQ";
-const DISPLAY_IMAGES = true;
+
 
 /*
         
@@ -173,39 +170,61 @@ if (lightbox && lightboxImg) {
     })
 }
 
+function parseSheetDate(str) {
+    const [datePart, timePart = "0:0:0"] = str.trim().split(/\s+/);
+    const [d, m, y] = datePart.split("/").map(Number);
+    const [hh = 0, mm = 0, ss = 0] = timePart.split(":").map(Number);
+    return new Date(y, m - 1, d, hh, mm, ss).getTime() || 0;
+}
+
 async function fetchImages() {
     const gallery = document.getElementById("gallery");
     if (!gallery || !DISPLAY_IMAGES) return;
 
+    const sheetIds = [GOOGLE_SHEET_ID];
+    if (typeof EXTRA_GOOGLE_SHEET_ID !== "undefined") sheetIds.push(EXTRA_GOOGLE_SHEET_ID);
+
     try {
-        const response = await fetch(GOOGLE_SHEET_URL);
-        const csvText = await response.text();
-        const rows = csvText.split("\n").filter(r => r.trim() !== "").slice(1);
+        const allItems = [];
+
+        await Promise.all(sheetIds.map(async (id) => {
+            const url = `https://docs.google.com/spreadsheets/d/${id}/export?format=csv`;
+            const response = await fetch(url);
+            const csvText = await response.text();
+            const rows = csvText.split("\n").filter(r => r.trim() !== "").slice(1);
+
+            rows.forEach((row) => {
+                const columns = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                if (columns.length < 2) return;
+
+                const time = columns[0].replace(/"/g, "").trim();
+                const imgUrl = columns[1].trim().replace(/"/g, "");
+                const source = columns[2] ? columns[2].trim().replace(/"/g, "") : "";
+
+                if (imgUrl.includes("i.imgur.com") && (source === SECRET_CODE || source === "")) {
+                    allItems.push({ time, imgUrl, ms: parseSheetDate(time) });
+                }
+            });
+        }));
+
+        allItems.sort((a, b) => b.ms - a.ms);
 
         gallery.innerHTML = "";
-        rows.reverse().forEach((row) => {
-            const columns = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-            if (columns.length < 2) return;
-
-            const time = columns[0].replace(/"/g, "");
-            const url = columns[1].trim().replace(/"/g, "");
-
-            if (url.startsWith("http")) {
-                const div = document.createElement("div");
-                div.classList.add("image-container");
-                div.innerHTML = `<img src="${url}" referrerpolicy="no-referrer"><p>${time}</p>`;
-                
-                div.addEventListener("click",() => {
-                    if (lightbox && lightboxImg) {
-                        const imgSrc = div.querySelector("img").src;
-                        lightboxImg.src = imgSrc;
-                        lightbox.style.display = "flex";
-                    }                    
-                })
-                gallery.appendChild(div);
-            }
+        allItems.forEach((item) => {
+            const div = document.createElement("div");
+            div.classList.add("image-container");
+            div.innerHTML = `<img src="${item.imgUrl}" referrerpolicy="no-referrer"><p>${item.time}</p>`;
+            
+            div.addEventListener("click", () => {
+                if (lightbox && lightboxImg) {
+                    lightboxImg.src = item.imgUrl;
+                    lightbox.style.display = "flex";
+                }                    
+            });
+            gallery.appendChild(div);
         });
     } catch (e) { console.error(e); }
 }
+
 
 fetchImages();
